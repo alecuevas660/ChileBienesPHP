@@ -1,0 +1,72 @@
+.derecha{
+    display: flex;
+    align-items: center;
+    .dark-mode-boton{
+        width: 3rem;
+        padding-top: 1rem;
+        margin: 0 auto;
+        filter: invert(100%);
+        &:hover{
+            cursor: pointer;
+        }
+       
+    }
+}
+
+.barra{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    h1{
+        color: $blanco;
+        text-align: center;
+        font-size: 40px;
+      
+    }
+    a{
+        margin: 0 auto;
+    }
+}
+
+.navegacion {
+    visibility: hidden;
+    opacity: 0;
+    height: auto;
+    transition: visibility .3s ease-in-out, opacity 0.5s linear, height .5s linear;
+    a {
+        color: $blanco;
+        text-decoration: none;
+        font-size: 2.2rem;
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        &:hover{
+            color: $hover;
+        }
+    }
+    @include tablet {
+        display: flex;
+        gap: 2rem;
+        opacity:1;
+        visibility: visible;
+    }
+}
+
+/*menu hamburgues*/
+.mobile-menu{
+    @include tablet{
+        display: none;
+    }
+    img{
+        width: 5rem;
+    }
+}
+.mostrar{
+    visibility: visible;
+    opacity: 1;
+}

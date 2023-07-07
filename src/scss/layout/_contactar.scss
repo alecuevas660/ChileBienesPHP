@@ -1,0 +1,52 @@
+.no-webp .imagen-contactar{
+    background-image: url(../img/contactar.jpg);
+}
+.webp .imagen-contactar {
+    background-image: url(../img/contactar.jpg);
+}
+.imagen-contactar{
+    background-position: center center;
+    background-size:cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include tablet {
+        min-height: 70rem;
+    }
+    h2{
+        font-family: 4rem;
+        font-weight: $black;
+        color: $blanco;
+    }
+    p{
+        font-size:1.8rem;
+        color:$blanco;
+    }
+}
+
+
+@include tablet{
+    .seccion-contacto{
+       @include grid(2, 2rem);
+    }
+}
+
+@include tablet{
+    .iconos-redes{
+        @include grid(3, 1rem);
+    }
+}
+
+.iconos-redes{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+
+}
+.adress{
+    text-align: center;
+    margin: 0;
+}

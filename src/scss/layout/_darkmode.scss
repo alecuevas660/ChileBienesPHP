@@ -1,0 +1,17 @@
+.dark-mode{
+    background-color: $grisOscuro;
+    h1,h2,h3,h4{
+      color:$blanco;
+    }
+    p{
+        color: $blanco;
+    }
+    .contenido-anuncio{
+        h1,h2,h3,h4{
+            color:$negro;
+          }
+          p{
+              color: $negro;
+          }
+    }
+}

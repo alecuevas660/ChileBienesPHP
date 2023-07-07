@@ -1,0 +1,12 @@
+.boton-amarillo{
+    @include boton($amarillo, block);
+}
+
+.boton-contacto{
+    @include boton($bgt, inline-block)
+}
+
+
+.boton-volver{
+    @include boton($verde, block)
+}
