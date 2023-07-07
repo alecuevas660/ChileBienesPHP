@@ -20,7 +20,7 @@ incluirTemplate('header', $inicio=false);
         <main class="contenedor seccion contenido-centrado">
             <h1><?php echo $propiedad['titulo'];?></h1>
             <img loading="lazy" src="/CHILEBIENES/imagenes/<?php echo $propiedad['imagen']; ?>">
-            <p style="margin-top:30px;font-weight:bold;">$50.000.000</p>
+            <p style="margin-top:30px;font-weight:bold;">Precio: <br><?php echo $propiedad['precio']; ?></p>
                 <ul class="iconos-caracteristicas">
                     <li>
                         <img loading="lazy" src="build/img/icono_wc.svg" alt="iconowater">
