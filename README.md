@@ -1,2 +1,0 @@
-# ChileBienesPHP
-Proyecto PHP
