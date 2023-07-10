@@ -147,9 +147,7 @@ input-box i {
             </div>
             
             <button type="submit" class="btn">Login</button>
-            <div style="font-size:16px;" class="register-link">
-                
-                <p style="color:white; font-size:20px;">¿No tienes cuenta?</p>
+            <div style="margin-top:10px;"style="font-size:16px;" class="register-link">
                 <a href="#">Registrarse</a>
                 <a href="#">¿Olvidaste tu contraseña?</a>
             </div>
