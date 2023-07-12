@@ -2,7 +2,11 @@
 //Base de datos
 require '../../includes/config/database.php';
 $db = conectarDB();
-
+require '../../includes/funciones.php';
+$auth = isAutenticado();
+if (!$auth){
+    header('Location: /ChileBienes/index.php');
+} 
 $consulta = "SELECT * FROM vendedor";
 $resultado = mysqli_query($db, $consulta);
 //Arreglo con mensaje de errores
@@ -108,7 +112,7 @@ $habitaciones = '';
 $wc = '';
 $estacionamiento = '';
 $vendedor = '';
-require '../../includes/funciones.php';
+
 incluirTemplate('header');
 
 ?>

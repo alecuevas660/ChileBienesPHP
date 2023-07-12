@@ -1,5 +1,9 @@
 <?php
-
+require '../../includes/funciones.php';
+$auth = isAutenticado();
+if (!$auth){
+    header('Location: /ChileBienes/index.php');
+} 
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
 if(!$id) {
@@ -127,7 +131,6 @@ $vendedorId = $propiedad['vendedorId'];
 $imagenPropiedad = $propiedad['imagen'];
 
 
-require '../../includes/funciones.php';
 incluirTemplate('header');
 
 ?>

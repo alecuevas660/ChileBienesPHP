@@ -1,7 +1,6 @@
 <?php
-session_start();
-$auth = $_SESSION['login']; //login = True inicio de sesión ha ocurrido
-//Si es que el usuario está autenticado
+require '../includes/funciones.php';
+$auth = isAutenticado();
 if (!$auth){
     header('Location: /ChileBienes/index.php');
 } 
@@ -41,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         }
     }
 }
-require '../includes/funciones.php';
+
 
 incluirTemplate('header');
 
@@ -105,6 +104,7 @@ td,th{
 </style>
 <main class="contenedor seccion">
 <a style="margin-bottom:20px;"href="/ChileBienes/admin/propiedades/crear.php" class="boton boton-contacto">  Crear propiedad &rarr;</a> 
+<a href="/ChileBienes/index.php" class="boton boton-contacto">&larr; Volver a pagina principal</a>
 <?php if( intval( $resultado ) === 1): ?>
         <p style="text-align: center; color: white; padding:3rem;font-weight:bold;text-transform: uppercase;margin: 1rem 0;background-color:greenyellow;">Hecho correctamente</p>
         <?php endif; ?>
