@@ -32,7 +32,7 @@ incluirTemplate('header', $inicio=true);
             ?>
 
         <div class="alinear-todas">
-            <a href="anuncios.html"class="boton-amarillo">Ver todas</a>
+            <a href="anuncios.php"class="boton-amarillo">Ver todas</a>
         </div>
     </section>
 

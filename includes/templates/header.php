@@ -1,3 +1,10 @@
+<?php
+    if(!isset($_SESSION)) { //SI no esta vacia la sesión, esta comienza, si esta vacia, no.
+        session_start();
+    }
+
+    $auth = $_SESSION['login'] ?? false; //Pregunta si es false
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,6 +38,9 @@
                         <a href="contacto.php">
                                 Contacto
                         </a>
+                        <?php if($auth): ?> <!---Pregunta si es True la sesión, si la es ocurre esto---->
+                            <a href="cerrar-sesion.php">Cerrar Sesión</a>
+                        <?php endif; ?>
                         <img class="dark-mode-boton" src="/CHILEBIENES/build/img/dark-mode.svg" alt="dark-mode">
                     </nav>
                 </div>
