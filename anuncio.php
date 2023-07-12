@@ -8,7 +8,7 @@ if(!$id){
 require 'includes/config/database.php';
  $db = conectarDB();
 // Escribir el Query
-$query = "SELECT * FROM propiedades WHERE id = ${id}";
+$query = "SELECT * FROM propiedades WHERE id = {$id}";
 
 // Consultar la BD 
 $resultado = mysqli_query($db, $query);

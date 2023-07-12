@@ -1,33 +1,67 @@
-<?php
-//db
-require 'includes/config/database.php';
-$db = conectarDB();
+<?php 
 
-$errores = [];
+    require 'includes/config/database.php';
+    $db = conectarDB();
+    // Autenticar el usuario
 
-//autenticar usuario usuario
-if($_SERVER['REQUEST_METHOD'] ==='POST'){
-    $email =mysqli_real_escape_string($db, filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
-    $password= mysqli_real_escape_string($db,$_POST['password']);
-    if(!$email){
-        $errores[] = "El email es obligatorio o no es válido";
-    
-    }
-    if(!$password){
-        $errores[] = "La contraseña es obligatoria";
-        
-    }
+    $errores = [];
 
-    if(empty($errores)){
-        $query= "SELECT * FROM usuarios WHERE email = '${email}'  ";
-        $resultado= mysqli_query($db,$query);
-        if($resultado->num_rows){
-            
-        }else{
-            $errores[] = "El usuario no existe";
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // echo "<pre>";
+        // var_dump($_POST);
+        // echo "</pre>";
+
+        $email = mysqli_real_escape_string($db,  filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL) );
+        $password = mysqli_real_escape_string($db,  $_POST['password']);
+
+        if(!$email) {
+            $errores[] = "El email es obligatorio o no es válido";
         }
+
+        if(!$password) {
+            $errores[] = "El Password es obligatorio";
+        }
+
+        if(empty($errores)) {
+
+            // Revisar si el usuario existe.
+            $query = "SELECT * FROM usuarios WHERE email = '{$email}' ";
+            $resultado = mysqli_query($db, $query);
+
+
+            
+
+            if( $resultado->num_rows ) {
+                // Revisar si el password es correcto
+                $usuario = mysqli_fetch_assoc($resultado);
+
+                // var_dump($usuario['password']);
+
+                // Verificar si el password es correcto o no
+
+                $auth = password_verify($password, $usuario['password']);
+
+                if($auth) {
+                    // El usuario esta autenticado
+                    session_start();
+
+                    // Llenar el arreglo de la sesión
+                    $_SESSION['usuario'] = $usuario['email'];
+                    $_SESSION['login'] = true;
+
+     
+                    header('Location: /ChileBienes/admin');
+
+                } else {
+                    $errores[] = 'El password es incorrecto';
+                }
+            } else {
+                $errores[] = "El Usuario no existe";
+            }
+        }
+
     }
-}
+
 
 //incluye header
 require 'includes/funciones.php';
@@ -105,8 +139,8 @@ input-box i {
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow:0 0 10px rgba(0, 0, 0, .1);
     cursor:pointer;
+    box-shadow:0 0 10px rgba(0, 0, 0, .1);
     font-weight: 600;
 }
 .formulario .register-link{
@@ -135,15 +169,24 @@ input-box i {
 </style>
 
 <main class="contenedor seccion">
+
+
+
     <div class="formulario">
-        <form method="POST" novalidate >
+                 
+
+        <form method="POST"  >
         <a href="/ChileBienes/index.php" class="boton">&larr; Volver </a>
             <h1>Login</h1>
             <div class="input-box">
                 <input name="email" type="email" placeholder="Ingresa E-mail" required>
+                
+      
+
             </div>
             <div class="input-box">
                 <input name="password" type="password" placeholder="Ingresa contraseña" required>
+              
             </div>
             
             <button type="submit" class="btn">Login</button>

@@ -1,4 +1,10 @@
 <?php
+session_start();
+$auth = $_SESSION['login']; //login = True inicio de sesión ha ocurrido
+//Si es que el usuario está autenticado
+if (!$auth){
+    header('Location: /ChileBienes/index.php');
+} 
 
     // Importar la conexión
     require '../includes/config/database.php';
@@ -19,16 +25,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if($id){
 
         //eliminar archivos
-        $query = "SELECT imagen FROM propiedades WHERE id = ${id}";
+        $query = "SELECT imagen FROM propiedades WHERE id = {$id}";
 
         $resultado = mysqli_query($db, $query);
         $propiedad = mysqli_fetch_assoc($resultado);
 
-        unlink('../imageens/'.$propiedad['imagen']);
+        unlink('../imagenes/'.$propiedad['imagen']);
 
 
         //eliminar la propiedad
-        $query = "DELETE FROM propiedades WHERE id = ${id}";
+        $query = "DELETE FROM propiedades WHERE id = {$id}";
         $resultado=mysqli_query($db, $query);
         if($resultado){
             header('Location: /ChileBienes/admin');
@@ -100,7 +106,7 @@ td,th{
 <main class="contenedor seccion">
 <a style="margin-bottom:20px;"href="/ChileBienes/admin/propiedades/crear.php" class="boton boton-contacto">  Crear propiedad &rarr;</a> 
 <?php if( intval( $resultado ) === 1): ?>
-        <p style="text-align: center; color: $blanco;padding:3rem;font-weight:bold;text-transform: uppercase;margin: 1rem 0;background-color:greenyellow;">Hecho correctamente</p>
+        <p style="text-align: center; color: white; padding:3rem;font-weight:bold;text-transform: uppercase;margin: 1rem 0;background-color:greenyellow;">Hecho correctamente</p>
         <?php endif; ?>
 <table class="propiedades">
     <thead>
